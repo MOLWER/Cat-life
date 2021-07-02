@@ -37,30 +37,43 @@ public class Kotik {
     }
 
     public void liveAnotherDay() {
-        System.out.println("Имя кота: "+name+"\nВес кота: "+ weight);
+        System.out.println("Имя кота: " + name + "\nВес кота: " + weight);
         for (int i = 0; i < 24; i++) {
-            if (wellFed != 0) {
-                wellFed--;
-                int random = (int) (Math.random() * 4);
-                switch (random) {
-                    case 0:
-                        sleep();
-                        break;
-                    case 1:
-                        play();
-                        break;
-                    case 2:
-                        chaseMouse();
-                        break;
-                    case 3:
-                        meow();
-                        break;
-                }
-            } else {
-                System.out.println("Я хочу есть");
-                eat();
+            int random = (int) (Math.random() * 4);
+            switch (random) {
+                case 0:
+                    if (sleep())
+                        System.out.println("спит");
+                    else {
+                        System.out.println("Я хочу есть");
+                        eat();
+                    }
+                    break;
+                case 1:
+                    if (play())
+                        System.out.println("играет");
+                    else {
+                        System.out.println("Я хочу есть");
+                        eat();
+                    }
+                    break;
+                case 2:
+                    if (chaseMouse())
+                        System.out.println("гоняется за мышкой");
+                    else {
+                        System.out.println("Я хочу есть");
+                        eat();
+                    }
+                    break;
+                case 3:
+                    if (meow())
+                        System.out.println("мяу");
+                    else {
+                        System.out.println("Я хочу есть");
+                        eat();
+                    }
+                    break;
             }
-
         }
 
     }
@@ -74,17 +87,23 @@ public class Kotik {
     }
 
     public boolean play() {
-        System.out.println("играет");
+        if (wellFed <= 0)
+            return false;
+        wellFed -= 2;
         return true;
     }
 
     public boolean sleep() {
-        System.out.println("спит");
+        if (wellFed <= 0)
+            return false;
+        wellFed -= 2;
         return true;
     }
 
     public boolean chaseMouse() {
-        System.out.println("гоняется за мышкой");
+        if (wellFed <= 0)
+            return false;
+        wellFed -= 2;
         return true;
     }
 
@@ -103,7 +122,9 @@ public class Kotik {
     }
 
     public boolean meow() {
-        System.out.println("мяу");
+        if (wellFed <= 0)
+            return false;
+        wellFed -= 2;
         return true;
     }
 
